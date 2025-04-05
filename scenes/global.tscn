@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://brl576wtgm0yc"]
+[gd_scene load_steps=8 format=3 uid="uid://brl576wtgm0yc"]
 
 [ext_resource type="Script" uid="uid://c4sd5xqs8oj2b" path="res://scripts/global.gd" id="1_nelfd"]
 [ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="2_6rlim"]
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="2_nelfd"]
+[ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_6rlim"]
 [ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://assets/mask.tscn" id="5_x8cda"]
 [ext_resource type="Texture2D" uid="uid://xwxnho6lkgo2" path="res://resources/white.png" id="6_6rlim"]
 
@@ -11,13 +12,6 @@ shader = ExtResource("2_6rlim")
 shader_parameter/brightness = 0.0
 shader_parameter/contrast = 7.4
 shader_parameter/saturation = 1.0
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_xhekj"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_irjyx"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_xhekj")
 
 [node name="Global" type="Control"]
 layout_mode = 3
@@ -57,8 +51,9 @@ texture = ExtResource("6_6rlim")
 copy_mode = 2
 
 [node name="darkness" type="Sprite2D" parent="Control/BackBufferCopy"]
-scale = Vector2(2, 2)
-texture = SubResource("NoiseTexture2D_irjyx")
+scale = Vector2(24, 24)
+texture = ExtResource("5_6rlim")
 centered = false
 
 [node name="mask" parent="Control/BackBufferCopy" instance=ExtResource("5_x8cda")]
+scale = Vector2(5, 5)

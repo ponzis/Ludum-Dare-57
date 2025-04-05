@@ -1,13 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://q8roycg6pi2f"]
+[gd_scene load_steps=6 format=3 uid="uid://q8roycg6pi2f"]
 
 [ext_resource type="Shader" uid="uid://ganva1mu6uu8" path="res://resources/mask.gdshader" id="1_d41ma"]
 [ext_resource type="Texture2D" uid="uid://07o8gedkr661" path="res://resources/coursor_mask.tres" id="2_mfivy"]
 
+[sub_resource type="Gradient" id="Gradient_fmhf3"]
+interpolation_mode = 2
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ibmk"]
+gradient = SubResource("Gradient_fmhf3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.532764, 0)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d41ma"]
 shader = ExtResource("1_d41ma")
+shader_parameter/depth = SubResource("GradientTexture2D_0ibmk")
+shader_parameter/depth_factor = 1.0
 shader_parameter/tint = Color(0.184836, 0.18303, 9.62615e-08, 1)
 
 [node name="mask" type="Sprite2D"]
 material = SubResource("ShaderMaterial_d41ma")
-scale = Vector2(5, 5)
 texture = ExtResource("2_mfivy")
