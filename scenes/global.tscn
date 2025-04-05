@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://brl576wtgm0yc"]
+
+[ext_resource type="Script" uid="uid://c4sd5xqs8oj2b" path="res://scripts/global.gd" id="1_nelfd"]
+[ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="2_6rlim"]
+[ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="2_nelfd"]
+[ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://assets/mask.tscn" id="5_x8cda"]
+[ext_resource type="Texture2D" uid="uid://xwxnho6lkgo2" path="res://resources/white.png" id="6_6rlim"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_irjyx"]
+shader = ExtResource("2_6rlim")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xhekj"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_irjyx"]
+noise = SubResource("FastNoiseLite_xhekj")
+
+[node name="Global" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nelfd")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Room" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Room1" parent="Control/Room" instance=ExtResource("2_nelfd")]
+
+[node name="Tint" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_irjyx")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_6rlim")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Control"]
+copy_mode = 2
+
+[node name="darkness" type="Sprite2D" parent="Control/BackBufferCopy"]
+position = Vector2(703.5, 421.5)
+scale = Vector2(2.79883, 1.97852)
+texture = SubResource("NoiseTexture2D_irjyx")
+
+[node name="mask" parent="Control/BackBufferCopy" instance=ExtResource("5_x8cda")]

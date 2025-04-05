@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8jg5gbx1sx66"]
+
+[ext_resource type="Texture2D" uid="uid://bh4oij6ch4phs" path="res://assets/DSC_3767.jpg" id="1_hnbyo"]
+[ext_resource type="PackedScene" uid="uid://twoavscqodlq" path="res://assets/items/bicycle.tscn" id="2_fbq1s"]
+
+[node name="Room1" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_hnbyo")
+centered = false
+
+[node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]

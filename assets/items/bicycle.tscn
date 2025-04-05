@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://twoavscqodlq"]
+[gd_scene load_steps=5 format=3 uid="uid://twoavscqodlq"]
 
 [ext_resource type="Script" uid="uid://ck42e1tkndkh3" path="res://scripts/item.gd" id="1_pxcdt"]
 
-[node name="Bicycle" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_62dly"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bto8u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_62dly"]
+color_ramp = SubResource("Gradient_62dly")
+noise = SubResource("FastNoiseLite_bto8u")
+
+[node name="Bicycle" type="Sprite2D"]
+texture = SubResource("NoiseTexture2D_62dly")
 script = ExtResource("1_pxcdt")

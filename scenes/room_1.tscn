@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://brl576wtgm0yc"]
-
-[ext_resource type="PackedScene" uid="uid://twoavscqodlq" path="res://assets/items/bicycle.tscn" id="1_0tsjr"]
-
-[node name="Room1" type="Node2D"]
-
-[node name="Bicycle" parent="." instance=ExtResource("1_0tsjr")]

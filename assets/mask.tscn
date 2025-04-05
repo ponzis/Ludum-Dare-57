@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://q8roycg6pi2f"]
+
+[ext_resource type="Shader" uid="uid://ganva1mu6uu8" path="res://resources/mask.gdshader" id="1_d41ma"]
+[ext_resource type="Texture2D" uid="uid://07o8gedkr661" path="res://resources/coursor_mask.tres" id="2_mfivy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d41ma"]
+shader = ExtResource("1_d41ma")
+shader_parameter/tint = Color(0.26932, 0.252827, 0.0481294, 1)
+
+[node name="mask" type="Sprite2D"]
+material = SubResource("ShaderMaterial_d41ma")
+scale = Vector2(5, 5)
+texture = ExtResource("2_mfivy")
