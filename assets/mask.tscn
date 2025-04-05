@@ -5,7 +5,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d41ma"]
 shader = ExtResource("1_d41ma")
-shader_parameter/tint = Color(0.26932, 0.252827, 0.0481294, 1)
+shader_parameter/tint = Color(0.184836, 0.18303, 9.62615e-08, 1)
 
 [node name="mask" type="Sprite2D"]
 material = SubResource("ShaderMaterial_d41ma")

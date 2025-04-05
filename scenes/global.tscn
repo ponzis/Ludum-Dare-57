@@ -9,12 +9,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_irjyx"]
 shader = ExtResource("2_6rlim")
 shader_parameter/brightness = 0.0
-shader_parameter/contrast = 1.0
+shader_parameter/contrast = 7.4
 shader_parameter/saturation = 1.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xhekj"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_irjyx"]
+width = 1024
+height = 1024
 noise = SubResource("FastNoiseLite_xhekj")
 
 [node name="Global" type="Control"]
@@ -55,8 +57,8 @@ texture = ExtResource("6_6rlim")
 copy_mode = 2
 
 [node name="darkness" type="Sprite2D" parent="Control/BackBufferCopy"]
-position = Vector2(703.5, 421.5)
-scale = Vector2(2.79883, 1.97852)
+scale = Vector2(2, 2)
 texture = SubResource("NoiseTexture2D_irjyx")
+centered = false
 
 [node name="mask" parent="Control/BackBufferCopy" instance=ExtResource("5_x8cda")]
