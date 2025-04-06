@@ -31,7 +31,7 @@ func click():
 
 
 func _input(event: InputEvent) -> void:
-	if is_pixel_opaque(get_local_mouse_position()):
+	if is_pixel_opaque(get_local_mouse_position()) && visible:
 		if event.is_action("l_click"):
 			click()
 			return

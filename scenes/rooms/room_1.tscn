@@ -78,7 +78,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wodat"]
 shader = SubResource("Shader_fbq1s")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/thickness = 1.0
+shader_parameter/thickness = 100.0
 shader_parameter/tolerance = 0.0
 shader_parameter/diagonals = true
 shader_parameter/rounded = true
@@ -107,9 +107,8 @@ texture = ExtResource("1_fbq1s")
 centered = false
 
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]
-visible = false
 material = SubResource("ShaderMaterial_wodat")
-position = Vector2(963, 407)
+position = Vector2(243, 369)
 scale = Vector2(5, 5)
 texture = SubResource("GradientTexture2D_v1x83")
 
