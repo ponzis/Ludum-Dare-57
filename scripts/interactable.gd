@@ -16,11 +16,17 @@ var line_thickness: float = 10.0
 
 func _init() -> void:
 	print("Item: ", name, " init")
-	is_pixel_opaque(get_local_mouse_position()) #Move lag to init
+
 
 func _ready():
 	print("Item: ", name, " ready")
+	call_deferred("ready_cleanup")
 	
+
+func ready_cleanup():
+	is_pixel_opaque(get_local_mouse_position()) #Move lag to init
+
+
 func _process(_delta: float) -> void:
 	if(show_border):
 		material.set_shader_parameter('line_thickness', line_thickness)

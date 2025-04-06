@@ -10,5 +10,9 @@ func click():
 	super.click()
 	GameState.item = self
 	if delete_on_click:
-		queue_free()
-		print('Removed self')
+		_remove()
+
+
+func _remove():
+	queue_free()
+	print('Removed self')

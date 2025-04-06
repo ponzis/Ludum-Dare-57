@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=22 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
 [ext_resource type="Texture2D" uid="uid://c5ryh5u3qe8xr" path="res://resources/icons/Exit.svg" id="8_y5lrh"]
 [ext_resource type="PackedScene" uid="uid://ctbdvn54uvslj" path="res://scenes/rooms/room_test.tscn" id="9_38fm3"]
+[ext_resource type="Script" uid="uid://bcjb3atxhqiem" path="res://scripts/inlay.gd" id="10_wrk0s"]
 [ext_resource type="Script" uid="uid://uo8uq05eptvc" path="res://scripts/door.gd" id="10_wtcj1"]
 [ext_resource type="Shader" uid="uid://bi2lf76mac21x" path="res://resources/shaders/outline.gdshader" id="11_38fm3"]
+[ext_resource type="PackedScene" uid="uid://bgodcg4jc3g4a" path="res://assets/items/bicycle_overlay.tscn" id="11_rgk8g"]
+[ext_resource type="Texture2D" uid="uid://cuv4vhaoig5rj" path="res://assets/items/flash.png" id="11_wrk0s"]
 
 [sub_resource type="Gradient" id="Gradient_aq8op"]
 offsets = PackedFloat32Array(0.914787, 0.958647)
@@ -77,10 +80,13 @@ material = SubResource("ShaderMaterial_38fm3")
 position = Vector2(175, 471)
 scale = Vector2(1.65625, 1.65625)
 texture = SubResource("GradientTexture2D_v1x83")
+script = ExtResource("10_wrk0s")
+inlay = ExtResource("11_rgk8g")
 
 [node name="Light" parent="." instance=ExtResource("4_wodat")]
 material = SubResource("ShaderMaterial_wrk0s")
-position = Vector2(735, 443)
-scale = Vector2(0.0282561, 0.0282561)
+position = Vector2(711, 448)
+rotation = 0.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_wrk0s")
 show_border = true
-line_thickness = 63.0

@@ -7,8 +7,6 @@ extends Interactable
 @onready var game: GameManager = $/root/Root
 
 
-
-
 func click():
 	print('Click Door')
 	super.click()
