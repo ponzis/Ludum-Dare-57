@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctbdvn54uvslj"]
+[gd_scene load_steps=9 format=3 uid="uid://ctbdvn54uvslj"]
 
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_g6r6c"]
 [ext_resource type="Texture2D" uid="uid://ddarvo6i5p34d" path="res://resources/backgrounds/Demo_color.png" id="2_qkadl"]
@@ -6,13 +6,21 @@
 [ext_resource type="Shader" uid="uid://7apebob33ky6" path="res://resources/shaders/background.gdshader" id="4_qkadl"]
 [ext_resource type="Texture2D" uid="uid://byd6dy4x7xpl8" path="res://resources/backgrounds/Demo_depth_mod.png" id="5_wunes"]
 
+[sub_resource type="Gradient" id="Gradient_wunes"]
+offsets = PackedFloat32Array(0.933584, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qdryn"]
+gradient = SubResource("Gradient_wunes")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wunes"]
 shader = ExtResource("4_qkadl")
 shader_parameter/brightness = 0.00229975
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
 shader_parameter/depth_texture = ExtResource("5_wunes")
-shader_parameter/depth_factor = 0.8186
-shader_parameter/depth_cutoff = 0.7652
-shader_parameter/depth_brightness = 2.744
+shader_parameter/depth_gradient = SubResource("GradientTexture1D_qdryn")
+shader_parameter/depth_cutoff = 1.0
 
 [node name="RoomTest" type="Node2D"]
 script = ExtResource("1_g6r6c")

@@ -3,7 +3,6 @@ shader_type canvas_item;
 uniform sampler2D screen_texture: hint_screen_texture, filter_linear_mipmap;
 
 uniform float power_factor: hint_range(0.0, 10.0, 0.01) = 0.5;
-uniform float power_color_factor: hint_range(0.0, 10.0, 0.01) = 0.5;
 //uniform sampler2D noise;
 //uniform float noise_factor: hint_range(0.0, 10.0, 0.01) = 0.5;
 
@@ -21,7 +20,7 @@ void fragment() {
 	vec4 falloff_mask = texture(falloff, UV);
 
 	//color.a = ((mask.a - power_modifier) * power_factor) * noise_texture * depth_texture;
-	color.a = (mask.a * dot(mask.rgb, vec3(power_color_factor)) * falloff_mask.a * power_factor);
+	color.a = (mask.a * dot(mask.rgb, vec3(0.299, 0.587, 0.114)) * falloff_mask.a * power_factor);
 	color.rgb = color.rgb + mask.rgb * tint;
 	COLOR = color;
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=15 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
@@ -8,13 +8,21 @@
 [ext_resource type="Shader" uid="uid://7apebob33ky6" path="res://resources/shaders/background.gdshader" id="4_aq8op"]
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
 
+[sub_resource type="Gradient" id="Gradient_aq8op"]
+offsets = PackedFloat32Array(0.914787, 0.958647)
+colors = PackedColorArray(0.955645, 0.955645, 0.955645, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y5lrh"]
+gradient = SubResource("Gradient_aq8op")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y5lrh"]
 shader = ExtResource("4_aq8op")
-shader_parameter/brightness = 1.0
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
 shader_parameter/depth_texture = ExtResource("2_p8nu4")
-shader_parameter/depth_factor = -0.3854
-shader_parameter/depth_cutoff = 3.3129
-shader_parameter/depth_brightness = 1.0
+shader_parameter/depth_gradient = SubResource("GradientTexture1D_y5lrh")
+shader_parameter/depth_cutoff = 1.0
 
 [sub_resource type="Shader" id="Shader_fbq1s"]
 code = "shader_type canvas_item;
@@ -106,6 +114,7 @@ scale = Vector2(5, 5)
 texture = SubResource("GradientTexture2D_v1x83")
 
 [node name="Light" parent="." instance=ExtResource("4_wodat")]
-position = Vector2(1119, 455)
+position = Vector2(753, 441)
+scale = Vector2(0.0282561, 0.0282561)
 show_border = true
 line_thickness = 63.0

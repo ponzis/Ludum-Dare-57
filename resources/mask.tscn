@@ -7,10 +7,9 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d41ma"]
 shader = ExtResource("1_d41ma")
-shader_parameter/power_factor = 2.5
-shader_parameter/power_color_factor = 0.5
+shader_parameter/power_factor = 9.33
 shader_parameter/alpha_cutoff = 1.0
-shader_parameter/tint = Color(0.0864203, 0.0864204, 3.00817e-08, 1)
+shader_parameter/tint = Color(0.0325324, 0.0325324, 1.50409e-09, 1)
 shader_parameter/falloff = ExtResource("2_o8j7d")
 
 [node name="mask" type="Sprite2D"]

@@ -22,11 +22,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5sy4")
+room_index = 1
 rooms_packs = Array[PackedScene]([ExtResource("2_u5sy4"), ExtResource("3_0tnpc"), null])
 
 [node name="Room" type="Node2D" parent="."]
 
-[node name="RoomTest" parent="Room" instance=ExtResource("2_u5sy4")]
+[node name="Room1" parent="Room" instance=ExtResource("3_0tnpc")]
 
 [node name="tint" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_nelfd")
@@ -49,7 +50,7 @@ polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
-position = Vector2(707, 339)
+position = Vector2(530, 325)
 
 [node name="UI" parent="." instance=ExtResource("7_kvuet")]
 layout_mode = 1
