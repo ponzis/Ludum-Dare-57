@@ -14,4 +14,4 @@ func _on_item_change(item: Item):
 
 
 func _on_reset_pressed() -> void:
-	Global.restet.emit()
+	Global.reset_scene()

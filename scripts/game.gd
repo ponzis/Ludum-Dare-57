@@ -1,32 +1,47 @@
+class_name GameManager
+
 extends Control
 
-@export var room_index: int = 0
-@export var rooms_packs: Array[PackedScene]
-
-
-@onready var current_room: Room
+@onready var current_room: Room = $Room/Room1
 @onready var room: Node2D = $Room
 @onready var mask: Mask = $BackBufferCopy/mask
+
+signal changed_room
+
+func change_room(sceen: PackedScene):
+	print('Room Change')
+	
+	if (current_room != null):
+		_unload_room(current_room)
+	_load_room(sceen)
+	changed_room.emit()
+
+
+func _unload_room(old_room: Room):
+	assert(old_room != null)
+	
+	old_room.queue_free()
+	current_room = null
+	return true
+
+
+func _load_room(scene: PackedScene):
+	assert(scene != null)
+	
+	var node = scene.instantiate()
+	
+	var new_room = node as Room
+	assert(new_room != null)
+	
+	room.add_child(new_room)
+	current_room = new_room
+	return true
 
 
 func _ready() -> void:
 	Global.restet.connect(_reset_room)
 	print('Room Ready')
 
-	if (current_room != null && current_room.id == room_index):
-		return
-	print(rooms_packs[room_index].resource_name)
-	
-	var scene = rooms_packs[room_index].instantiate()
-	if(current_room != null):
-		current_room.queue_free()
-	room.add_child(scene)
-	
-	current_room = scene as Room
-	
-	var scale = current_room.get_background_scale()
-	mask.set_depth(current_room.depth_texture, scale)
-
 
 func _reset_room():
-	current_room.get_tree().reload_current_scene()
+	get_tree().reload_current_scene()

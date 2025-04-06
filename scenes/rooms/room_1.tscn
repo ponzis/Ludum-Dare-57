@@ -1,12 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=19 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
 [ext_resource type="PackedScene" uid="uid://twoavscqodlq" path="res://assets/items/bicycle.tscn" id="2_fbq1s"]
 [ext_resource type="Texture2D" uid="uid://51o0eoujh1u5" path="res://resources/backgrounds/room_1_depth.png" id="2_p8nu4"]
-[ext_resource type="Texture2D" uid="uid://ddarvo6i5p34d" path="res://resources/backgrounds/Demo_color.png" id="2_v1x83"]
 [ext_resource type="Shader" uid="uid://7apebob33ky6" path="res://resources/shaders/background.gdshader" id="4_aq8op"]
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
+[ext_resource type="Texture2D" uid="uid://c5ryh5u3qe8xr" path="res://resources/icons/Exit.svg" id="8_y5lrh"]
+[ext_resource type="PackedScene" uid="uid://ctbdvn54uvslj" path="res://scenes/rooms/room_test.tscn" id="9_38fm3"]
+[ext_resource type="Script" uid="uid://uo8uq05eptvc" path="res://scripts/door.gd" id="10_wtcj1"]
+[ext_resource type="Shader" uid="uid://bi2lf76mac21x" path="res://resources/shaders/outline.gdshader" id="11_38fm3"]
 
 [sub_resource type="Gradient" id="Gradient_aq8op"]
 offsets = PackedFloat32Array(0.914787, 0.958647)
@@ -24,65 +27,15 @@ shader_parameter/depth_texture = ExtResource("2_p8nu4")
 shader_parameter/depth_gradient = SubResource("GradientTexture1D_y5lrh")
 shader_parameter/depth_cutoff = 1.0
 
-[sub_resource type="Shader" id="Shader_fbq1s"]
-code = "shader_type canvas_item;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtcj1"]
+shader = ExtResource("11_38fm3")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
-uniform vec4 color: source_color = vec4(1.0);
-uniform float thickness: hint_range(0.0, 100.0) = 1.0;
-uniform float tolerance: hint_range(0.0, 0.999) = 0.0;
-uniform bool diagonals = true;
-uniform bool rounded = true;
-
-uniform float decay = 0;
-
-bool border(vec2 uv) {
-	vec2 uvBorder = abs(uv - vec2(0.5));
-	return max(step(0.5, uvBorder.x), step(0.5, uvBorder.y)) > 0.0;
-}
-
-float in_range(vec2 size, sampler2D tex, vec2 uv) {
-	float res = 0.0;
-	for (float i = -1.0; i < 2.0; i += 2.0) {
-		res += texture(tex, uv + vec2(i * size.x, 0.0)).a;
-		res += texture(tex, uv + vec2(0.0, i * size.y)).a;
-		if (diagonals) {
-			for (float j = -1.0; j < 2.0; j += 2.0) {
-				res += texture(tex, uv + vec2(i * size.x, j * size.y)).a;
-				if (rounded) {
-					res += texture(tex, uv + vec2(i * size.x, j * size.y * 0.5)).a;
-				}
-			}
-		}
-	}
-	return res;
-}
-
-void fragment() {
-	if (thickness > 0.0) {
-		vec2 uv = UV;
-		uv -= vec2(0.5);
-		float edge = TEXTURE_PIXEL_SIZE.x * thickness * 2.0;
-		uv = uv + uv * edge;
-		uv += vec2(0.5);
-		
-		vec4 newColor = texture(TEXTURE, uv);
-		if (newColor.a == 0.0 || border(uv)) {
-			float outline = in_range(TEXTURE_PIXEL_SIZE * thickness, TEXTURE, uv);
-			vec4 finalColor = step(1.0 - tolerance, outline) * color;
-			newColor = finalColor;
-		}
-		COLOR = newColor;
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wodat"]
-shader = SubResource("Shader_fbq1s")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/thickness = 100.0
-shader_parameter/tolerance = 0.0
-shader_parameter/diagonals = true
-shader_parameter/rounded = true
-shader_parameter/decay = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38fm3"]
+shader = ExtResource("11_38fm3")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="Gradient" id="Gradient_p8nu4"]
 interpolation_mode = 1
@@ -95,25 +48,39 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wrk0s"]
+shader = ExtResource("11_38fm3")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
+
 [node name="Room1" type="Node2D"]
 script = ExtResource("1_wodat")
-color_texture = ExtResource("2_v1x83")
-depth_texture = ExtResource("2_p8nu4")
 
 [node name="Background" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_y5lrh")
 scale = Vector2(0.28125, 0.28125)
 texture = ExtResource("1_fbq1s")
 centered = false
+metadata/_edit_lock_ = true
+
+[node name="Door" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_wtcj1")
+position = Vector2(1095, 407)
+texture = ExtResource("8_y5lrh")
+script = ExtResource("10_wtcj1")
+next_room = ExtResource("9_38fm3")
+description = "Click to go to next room"
+border_distance = 50.0
 
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]
-material = SubResource("ShaderMaterial_wodat")
-position = Vector2(243, 369)
-scale = Vector2(5, 5)
+material = SubResource("ShaderMaterial_38fm3")
+position = Vector2(175, 471)
+scale = Vector2(1.65625, 1.65625)
 texture = SubResource("GradientTexture2D_v1x83")
 
 [node name="Light" parent="." instance=ExtResource("4_wodat")]
-position = Vector2(753, 441)
+material = SubResource("ShaderMaterial_wrk0s")
+position = Vector2(735, 443)
 scale = Vector2(0.0282561, 0.0282561)
 show_border = true
 line_thickness = 63.0

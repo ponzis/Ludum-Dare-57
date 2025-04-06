@@ -4,6 +4,7 @@ signal restet
 
 signal start
 signal end
+signal pause
 
 var game_scene = "res://scenes/game.tscn"
 var menu_scene = "res://scenes/menu.tscn"
@@ -18,5 +19,13 @@ func end_game():
 	get_tree().change_scene_to_file(menu_scene)
 	end.emit()
 
-func _process(delta: float) -> void:
+func puse_game():
+	print("game pause")
+	pause.emit()
+
+func reset_scene():
+	print("game restet")
+	restet.emit()
+
+func _process(_delta: float) -> void:
 	pass
