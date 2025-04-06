@@ -1,8 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=13 format=3 uid="uid://b8jg5gbx1sx66"]
 
-[ext_resource type="Texture2D" uid="uid://bh4oij6ch4phs" path="res://assets/DSC_3767.jpg" id="1_hnbyo"]
+[ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
+[ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
 [ext_resource type="PackedScene" uid="uid://twoavscqodlq" path="res://assets/items/bicycle.tscn" id="2_fbq1s"]
+[ext_resource type="Texture2D" uid="uid://51o0eoujh1u5" path="res://resources/backgrounds/room_1_depth.png" id="2_p8nu4"]
+[ext_resource type="Texture2D" uid="uid://ddarvo6i5p34d" path="res://resources/backgrounds/Demo_color.png" id="2_v1x83"]
+[ext_resource type="Shader" uid="uid://7apebob33ky6" path="res://resources/shaders/background.gdshader" id="4_aq8op"]
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y5lrh"]
+shader = ExtResource("4_aq8op")
+shader_parameter/depth_texture = ExtResource("2_p8nu4")
+shader_parameter/depth_factor = -0.3854
+shader_parameter/depth_cutoff = 3.3129
 
 [sub_resource type="Shader" id="Shader_fbq1s"]
 code = "shader_type canvas_item;
@@ -76,10 +86,14 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="Room1" type="Node2D"]
+script = ExtResource("1_wodat")
+color_texture = ExtResource("2_v1x83")
+depth_texture = ExtResource("2_p8nu4")
 
 [node name="Background" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_hnbyo")
+material = SubResource("ShaderMaterial_y5lrh")
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("1_fbq1s")
 centered = false
 
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]
@@ -90,6 +104,6 @@ scale = Vector2(5, 5)
 texture = SubResource("GradientTexture2D_v1x83")
 
 [node name="Light" parent="." instance=ExtResource("4_wodat")]
-position = Vector2(589, 403)
+position = Vector2(1119, 455)
 show_border = true
 line_thickness = 63.0

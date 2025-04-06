@@ -1,35 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://q8roycg6pi2f"]
+[gd_scene load_steps=5 format=3 uid="uid://q8roycg6pi2f"]
 
-[ext_resource type="Shader" uid="uid://ganva1mu6uu8" path="res://resources/mask.gdshader" id="1_d41ma"]
+[ext_resource type="Shader" uid="uid://ganva1mu6uu8" path="res://resources/shaders/mask.gdshader" id="1_d41ma"]
 [ext_resource type="Texture2D" uid="uid://c50b7tti0xbw5" path="res://resources/light_map.png" id="2_6e22g"]
 [ext_resource type="Script" uid="uid://dqknc30yeji7j" path="res://scripts/cursor.gd" id="3_0ibmk"]
 
-[sub_resource type="Gradient" id="Gradient_fmhf3"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.171679, 0.834586)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ibmk"]
-gradient = SubResource("Gradient_fmhf3")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.532764, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_6e22g"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o8j7d"]
-width = 539
-noise = SubResource("FastNoiseLite_6e22g")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d41ma"]
 shader = ExtResource("1_d41ma")
-shader_parameter/power_factor = 1.0
-shader_parameter/power_modifier = -2.2352e-07
-shader_parameter/noise = SubResource("NoiseTexture2D_o8j7d")
-shader_parameter/noise_factor = 1.0
-shader_parameter/depth = SubResource("GradientTexture2D_0ibmk")
-shader_parameter/depth_factor = 1.0
-shader_parameter/tint = Color(0.184836, 0.18303, 9.62615e-08, 1)
+shader_parameter/power_factor = 1.67
+shader_parameter/alpha_cutoff = 1.0
+shader_parameter/tint = Color(0.0392157, 0.0392157, 0, 1)
 
 [node name="mask" type="Sprite2D"]
 material = SubResource("ShaderMaterial_d41ma")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://brl576wtgm0yc"]
 
 [ext_resource type="Script" uid="uid://chft3x8xi84ur" path="res://scripts/game.gd" id="1_u5sy4"]
-[ext_resource type="Script" uid="uid://t28wk17oipld" path="res://scripts/room_manager.gd" id="2_gee14"]
+[ext_resource type="PackedScene" uid="uid://ctbdvn54uvslj" path="res://scenes/rooms/room_test.tscn" id="2_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="3_0tnpc"]
-[ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="4_vtaks"]
+[ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/shaders/tint.gdshader" id="4_vtaks"]
 [ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://resources/mask.tscn" id="6_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="7_kvuet"]
@@ -22,11 +22,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5sy4")
+rooms_packs = Array[PackedScene]([ExtResource("2_u5sy4"), ExtResource("3_0tnpc"), null])
 
 [node name="Room" type="Node2D" parent="."]
-script = ExtResource("2_gee14")
 
-[node name="Room1" parent="Room" instance=ExtResource("3_0tnpc")]
+[node name="RoomTest" parent="Room" instance=ExtResource("2_u5sy4")]
 
 [node name="tint" type="Polygon2D" parent="."]
 material = SubResource("ShaderMaterial_nelfd")
@@ -47,6 +47,7 @@ polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
+position = Vector2(982, 144)
 
 [node name="UI" parent="." instance=ExtResource("7_kvuet")]
 layout_mode = 1
