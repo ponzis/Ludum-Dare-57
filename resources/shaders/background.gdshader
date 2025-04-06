@@ -1,8 +1,11 @@
 shader_type canvas_item;
 
+uniform float brightness: hint_range(-10.0, 10.0, 0.0001) = 1.0;
+
 uniform sampler2D depth_texture: hint_default_black;
 uniform float depth_factor: hint_range(-10.0, 10.0, 0.0001) = 1.0;
 uniform float depth_cutoff: hint_range(-10.0, 10.0, 0.0001) = 1.0;
+uniform float depth_brightness: hint_range(-10.0, 10.0, 0.0001) = 1.0;
 
 mat4 brightness_matrix(float b) {
 	return mat4(
@@ -15,9 +18,11 @@ mat4 brightness_matrix(float b) {
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-	float depth = texture(depth_texture, UV).x; 
-	vec4 newColor = brightness_matrix(depth * depth_factor) * color;
-	if(depth >= depth_cutoff){
+	vec4 depth = (texture(depth_texture, UV)) * depth_factor; 
+	vec4 newColor = brightness_matrix(brightness) * color;
+	newColor *= 1.0 - (depth * depth_brightness);
+	
+	if(depth.x > depth_cutoff){
 		newColor.a = 0.0;
 	}else{
 		newColor.a = color.a;

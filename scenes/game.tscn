@@ -35,9 +35,11 @@ texture = ExtResource("5_kvpfn")
 texture_scale = Vector2(0.05, 0.05)
 polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+metadata/_edit_lock_ = true
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="darkness" type="Polygon2D" parent="BackBufferCopy"]
 color = Color(0, 0, 0, 1)
@@ -47,7 +49,8 @@ polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
-position = Vector2(982, 144)
+position = Vector2(707, 339)
 
 [node name="UI" parent="." instance=ExtResource("7_kvuet")]
 layout_mode = 1
+metadata/_edit_lock_ = true

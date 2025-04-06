@@ -10,9 +10,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y5lrh"]
 shader = ExtResource("4_aq8op")
+shader_parameter/brightness = 1.0
 shader_parameter/depth_texture = ExtResource("2_p8nu4")
 shader_parameter/depth_factor = -0.3854
 shader_parameter/depth_cutoff = 3.3129
+shader_parameter/depth_brightness = 1.0
 
 [sub_resource type="Shader" id="Shader_fbq1s"]
 code = "shader_type canvas_item;

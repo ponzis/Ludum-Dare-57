@@ -11,7 +11,7 @@ extends Control
 
 func _ready() -> void:
 	Global.restet.connect(_reset_room)
-	
+	print('Room Ready')
 
 	if (current_room != null && current_room.id == room_index):
 		return

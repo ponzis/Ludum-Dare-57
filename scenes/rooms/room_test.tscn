@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctbdvn54uvslj"]
+[gd_scene load_steps=7 format=3 uid="uid://ctbdvn54uvslj"]
 
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_g6r6c"]
 [ext_resource type="Texture2D" uid="uid://ddarvo6i5p34d" path="res://resources/backgrounds/Demo_color.png" id="2_qkadl"]
 [ext_resource type="Texture2D" uid="uid://bj16ydwx4mnvi" path="res://resources/backgrounds/Demo_depth.png" id="3_wunes"]
 [ext_resource type="Shader" uid="uid://7apebob33ky6" path="res://resources/shaders/background.gdshader" id="4_qkadl"]
+[ext_resource type="Texture2D" uid="uid://byd6dy4x7xpl8" path="res://resources/backgrounds/Demo_depth_mod.png" id="5_wunes"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wunes"]
 shader = ExtResource("4_qkadl")
-shader_parameter/depth_texture = ExtResource("3_wunes")
-shader_parameter/depth_factor = -0.5215
-shader_parameter/depth_cutoff = 1.0
+shader_parameter/brightness = 0.00229975
+shader_parameter/depth_texture = ExtResource("5_wunes")
+shader_parameter/depth_factor = 0.8186
+shader_parameter/depth_cutoff = 0.7652
+shader_parameter/depth_brightness = 2.744
 
 [node name="RoomTest" type="Node2D"]
 script = ExtResource("1_g6r6c")
