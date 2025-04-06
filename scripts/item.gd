@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 
 func click():
 	interact.emit(name)
-	Global.item = self
+	GameState.item = self
 	if delete_on_click:
 		queue_free()
 		print('Removed self')

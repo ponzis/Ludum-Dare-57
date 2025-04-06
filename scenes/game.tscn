@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://brl576wtgm0yc"]
+
+[ext_resource type="Script" uid="uid://chft3x8xi84ur" path="res://scripts/game.gd" id="1_u5sy4"]
+[ext_resource type="Script" uid="uid://t28wk17oipld" path="res://scripts/room_manager.gd" id="2_gee14"]
+[ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="3_0tnpc"]
+[ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="4_vtaks"]
+[ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://assets/mask.tscn" id="6_dinhu"]
+[ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="7_kvuet"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nelfd"]
+shader = ExtResource("4_vtaks")
+shader_parameter/brightness = 0.0
+shader_parameter/contrast = 1.0
+shader_parameter/saturation = 1.0
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u5sy4")
+
+[node name="Room" type="Node2D" parent="."]
+script = ExtResource("2_gee14")
+
+[node name="Room1" parent="Room" instance=ExtResource("3_0tnpc")]
+
+[node name="tint" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_nelfd")
+color = Color(0, 0, 0, 1)
+texture = ExtResource("5_kvpfn")
+texture_scale = Vector2(0.05, 0.05)
+polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="darkness" type="Polygon2D" parent="BackBufferCopy"]
+color = Color(0, 0, 0, 1)
+texture = ExtResource("5_kvpfn")
+texture_scale = Vector2(0.05, 0.05)
+polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+
+[node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
+scale = Vector2(5, 5)
+
+[node name="UI" parent="." instance=ExtResource("7_kvuet")]
+layout_mode = 1

@@ -3,7 +3,7 @@ extends Control
 @onready var hand_label: Label = $Bottom/Hand
 
 func _ready() -> void:
-	Global.pickup.connect(_on_item_change)
+	GameState.pickup.connect(_on_item_change)
 	
 func _on_item_change(item):
 	if item != null:
@@ -14,5 +14,4 @@ func _on_item_change(item):
 
 
 func _on_reset_pressed() -> void:
-	print("Reset")
 	Global.restet.emit()

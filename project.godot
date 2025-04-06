@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="LD57"
-run/main_scene="uid://brl576wtgm0yc"
+run/main_scene="uid://ddo6h63exjs7f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
+GameState="*res://scripts/game_state.gd"
 
 [input]
 
