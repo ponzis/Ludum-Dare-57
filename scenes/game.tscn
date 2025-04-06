@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="3_0tnpc"]
 [ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="4_vtaks"]
 [ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://assets/mask.tscn" id="6_dinhu"]
+[ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://resources/mask.tscn" id="6_dinhu"]
 [ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="7_kvuet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nelfd"]
@@ -47,7 +47,6 @@ polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
-scale = Vector2(5, 5)
 
 [node name="UI" parent="." instance=ExtResource("7_kvuet")]
 layout_mode = 1
