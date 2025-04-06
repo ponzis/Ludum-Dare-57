@@ -1,6 +1,11 @@
 extends Control
 
-@onready var mask = $Control/BackBufferCopy/mask
+signal pickup
+
+@export var item: Item:
+	set(value):
+		pickup.emit(value)
+		item = value
 
 func _process(delta: float) -> void:
-	mask.global_position = get_global_mouse_position()
+	pass

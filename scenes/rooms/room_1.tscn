@@ -1,7 +1,79 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=8 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://bh4oij6ch4phs" path="res://assets/DSC_3767.jpg" id="1_hnbyo"]
 [ext_resource type="PackedScene" uid="uid://twoavscqodlq" path="res://assets/items/bicycle.tscn" id="2_fbq1s"]
+[ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
+
+[sub_resource type="Shader" id="Shader_fbq1s"]
+code = "shader_type canvas_item;
+
+uniform vec4 color: source_color = vec4(1.0);
+uniform float thickness: hint_range(0.0, 100.0) = 1.0;
+uniform float tolerance: hint_range(0.0, 0.999) = 0.0;
+uniform bool diagonals = true;
+uniform bool rounded = true;
+
+uniform float decay = 0;
+
+bool border(vec2 uv) {
+	vec2 uvBorder = abs(uv - vec2(0.5));
+	return max(step(0.5, uvBorder.x), step(0.5, uvBorder.y)) > 0.0;
+}
+
+float in_range(vec2 size, sampler2D tex, vec2 uv) {
+	float res = 0.0;
+	for (float i = -1.0; i < 2.0; i += 2.0) {
+		res += texture(tex, uv + vec2(i * size.x, 0.0)).a;
+		res += texture(tex, uv + vec2(0.0, i * size.y)).a;
+		if (diagonals) {
+			for (float j = -1.0; j < 2.0; j += 2.0) {
+				res += texture(tex, uv + vec2(i * size.x, j * size.y)).a;
+				if (rounded) {
+					res += texture(tex, uv + vec2(i * size.x, j * size.y * 0.5)).a;
+				}
+			}
+		}
+	}
+	return res;
+}
+
+void fragment() {
+	if (thickness > 0.0) {
+		vec2 uv = UV;
+		uv -= vec2(0.5);
+		float edge = TEXTURE_PIXEL_SIZE.x * thickness * 2.0;
+		uv = uv + uv * edge;
+		uv += vec2(0.5);
+		
+		vec4 newColor = texture(TEXTURE, uv);
+		if (newColor.a == 0.0 || border(uv)) {
+			float outline = in_range(TEXTURE_PIXEL_SIZE * thickness, TEXTURE, uv);
+			vec4 finalColor = step(1.0 - tolerance, outline) * color;
+			newColor = finalColor;
+		}
+		COLOR = newColor;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wodat"]
+shader = SubResource("Shader_fbq1s")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/thickness = 1.0
+shader_parameter/tolerance = 0.0
+shader_parameter/diagonals = true
+shader_parameter/rounded = true
+shader_parameter/decay = 0.0
+
+[sub_resource type="Gradient" id="Gradient_p8nu4"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.553191)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v1x83"]
+gradient = SubResource("Gradient_p8nu4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Room1" type="Node2D"]
 
@@ -11,3 +83,13 @@ texture = ExtResource("1_hnbyo")
 centered = false
 
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]
+visible = false
+material = SubResource("ShaderMaterial_wodat")
+position = Vector2(963, 407)
+scale = Vector2(5, 5)
+texture = SubResource("GradientTexture2D_v1x83")
+
+[node name="Light" parent="." instance=ExtResource("4_wodat")]
+position = Vector2(589, 403)
+show_border = true
+line_thickness = 63.0

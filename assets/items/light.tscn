@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://rkswgq7nho55"]
+
+[ext_resource type="Shader" uid="uid://bi2lf76mac21x" path="res://resources/outline.gdshader" id="1_koiay"]
+[ext_resource type="Texture2D" uid="uid://dn6m5h3gj5mux" path="res://assets/items/light.png" id="1_l3atr"]
+[ext_resource type="Script" uid="uid://ck42e1tkndkh3" path="res://scripts/item.gd" id="2_c0py0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bn88i"]
+shader = ExtResource("1_koiay")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 10.0
+
+[node name="Light" type="Sprite2D"]
+material = SubResource("ShaderMaterial_bn88i")
+rotation = -1.5708
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_l3atr")
+script = ExtResource("2_c0py0")

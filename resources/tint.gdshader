@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform sampler2D screen_texture: hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D screen_texture: hint_screen_texture, repeat_disable, filter_linear_mipmap;
 
 uniform float brightness: hint_range(-1.0, 1.0, 0.01) = 0.0;
 uniform float contrast: hint_range(-10.0, 10.0, 0.01) = 1.0;
