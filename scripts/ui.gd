@@ -11,3 +11,8 @@ func _on_item_change(item):
 		hand_label.text = "Holding %s." % item.name
 		return
 	hand_label.text = "Holding nothing."
+
+
+func _on_reset_pressed() -> void:
+	print("Reset")
+	Global.restet.emit()

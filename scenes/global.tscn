@@ -1,19 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://brl576wtgm0yc"]
+[gd_scene load_steps=8 format=3 uid="uid://brl576wtgm0yc"]
 
+[ext_resource type="Script" uid="uid://t28wk17oipld" path="res://scripts/room_manager.gd" id="1_6rlim"]
 [ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/tint.gdshader" id="2_6rlim"]
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="2_nelfd"]
+[ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="4_6rlim"]
 [ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_6rlim"]
 [ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://assets/mask.tscn" id="5_x8cda"]
-[ext_resource type="Texture2D" uid="uid://xwxnho6lkgo2" path="res://resources/white.png" id="6_6rlim"]
-[ext_resource type="Script" uid="uid://cbr2rm4bbbbm8" path="res://scripts/ui.gd" id="6_mmyj5"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_irjyx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nelfd"]
 shader = ExtResource("2_6rlim")
 shader_parameter/brightness = 0.0
-shader_parameter/contrast = 7.4
+shader_parameter/contrast = 1.0
 shader_parameter/saturation = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_unqd7"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -24,53 +22,17 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Room" type="Node2D" parent="."]
+script = ExtResource("1_6rlim")
 
 [node name="Room1" parent="Room" instance=ExtResource("2_nelfd")]
-position = Vector2(-12, -18)
 
-[node name="UI" type="Control" parent="."]
-z_index = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_mmyj5")
-
-[node name="Tint" type="TextureRect" parent="UI"]
-z_index = -1
-material = SubResource("ShaderMaterial_irjyx")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_6rlim")
-
-[node name="Bottom" type="Control" parent="UI"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="Hand" type="Label" parent="UI/Bottom"]
-material = SubResource("ShaderMaterial_unqd7")
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -129.0
-offset_top = -23.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "Holding nothing."
+[node name="tint" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_nelfd")
+color = Color(0, 0, 0, 1)
+texture = ExtResource("5_6rlim")
+texture_scale = Vector2(0.05, 0.05)
+polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
@@ -84,3 +46,6 @@ uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("5_x8cda")]
 scale = Vector2(5, 5)
+
+[node name="UI" parent="." instance=ExtResource("4_6rlim")]
+layout_mode = 1

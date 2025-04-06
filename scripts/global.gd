@@ -2,6 +2,8 @@ extends Control
 
 signal pickup
 
+signal restet
+
 @export var item: Item:
 	set(value):
 		pickup.emit(value)

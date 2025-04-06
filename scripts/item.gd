@@ -7,6 +7,8 @@ signal interact
 @export var description: String = ""
 @export var holdable: bool = false
 @export var show_border: bool = false
+@export var delete_on_click: bool = true
+
 
 @export_range(1, 100, 1, "or_greater")
 var line_thickness: float = 10.0
@@ -20,12 +22,18 @@ func _process(delta: float) -> void:
 	else:
 		material.set_shader_parameter('line_thickness', 0.0)
 
+func click():
+	interact.emit(name)
+	Global.item = self
+	if delete_on_click:
+		queue_free()
+		print('Removed self')
+
 
 func _input(event: InputEvent) -> void:
 	if is_pixel_opaque(get_local_mouse_position()):
 		if event.is_action("l_click"):
-			interact.emit(name)
-			Global.item = self
+			click()
 			return
 		show_border = true
 		return
