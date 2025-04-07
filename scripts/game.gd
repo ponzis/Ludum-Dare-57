@@ -8,12 +8,18 @@ extends Control
 @onready var overlay: Control = $Overlay
 @onready var mask: Mask = $BackBufferCopy/mask
 
-@onready var audio: AudioStreamPlayer = $Audio
+@onready var audio_player: AudioStreamPlayer = $Room/AudioStreamPlayer
 
 signal changed_room
 
 signal created_overlay(name: String)
 signal changed_overlay(name: String)
+
+
+func play_sfx(audio: AudioStream):
+	if audio != null && audio_player.stream  != audio:
+		audio_player.stream = audio
+	audio_player.play()
 
 func change_room(sceen: PackedScene) -> Room:
 	print('Room Change')

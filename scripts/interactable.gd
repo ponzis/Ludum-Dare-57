@@ -8,11 +8,18 @@ signal interact
 @export var description: String = ""
 
 
+@export_group("SFX")
+@export var audio: AudioStream
+
+@export_group("Shaders")
 @export_subgroup("Border")
 @export var show_border: bool = false
 @export var border_distance: float = 0.0
 @export_range(1, 100, 1, "or_greater")
 var line_thickness: float = 10.0
+
+
+@onready var game: GameManager = $/root/Root
 
 func _init() -> void:
 	print("Item: ", name, " init")
@@ -36,7 +43,9 @@ func _process(_delta: float) -> void:
 func click():
 	print('Click Interactable')
 	interact.emit(name)
-
+	if game != null && audio != null:
+		game.play_sfx(audio)
+	
 
 func is_close(mouse_position: Vector2) -> bool:
 	if to_local(position).distance_to(mouse_position) < border_distance:

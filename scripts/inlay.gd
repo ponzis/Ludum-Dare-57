@@ -4,8 +4,6 @@ extends Interactable
 
 @export var inlay: PackedScene
 
-@onready var game: GameManager = $/root/Root
-
 var overlay: Overlay
 
 func _ready() -> void:

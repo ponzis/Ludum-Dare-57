@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=23 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
 [ext_resource type="Texture2D" uid="uid://c5ryh5u3qe8xr" path="res://resources/icons/Exit.svg" id="8_y5lrh"]
 [ext_resource type="PackedScene" uid="uid://ctbdvn54uvslj" path="res://scenes/rooms/room_test.tscn" id="9_38fm3"]
+[ext_resource type="AudioStream" uid="uid://dsqgl84vvjysc" path="res://scenes/rooms/door_random.tres" id="9_whcv4"]
 [ext_resource type="Script" uid="uid://bcjb3atxhqiem" path="res://scripts/inlay.gd" id="10_wrk0s"]
 [ext_resource type="Script" uid="uid://uo8uq05eptvc" path="res://scripts/door.gd" id="10_wtcj1"]
 [ext_resource type="Shader" uid="uid://bi2lf76mac21x" path="res://resources/shaders/outline.gdshader" id="11_38fm3"]
@@ -73,6 +74,7 @@ texture = ExtResource("8_y5lrh")
 script = ExtResource("10_wtcj1")
 next_room = ExtResource("9_38fm3")
 description = "Click to go to next room"
+audio = ExtResource("9_whcv4")
 border_distance = 50.0
 
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]

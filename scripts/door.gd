@@ -4,8 +4,9 @@ extends Interactable
 
 @export var next_room: PackedScene
 
-@onready var game: GameManager = $/root/Root
-
+func _init() -> void:
+	pass
+	
 
 func click():
 	print('Click Door')
