@@ -41,11 +41,22 @@ func _changed_overlay(overlay_id: String):
 	if (name != overlay_id):
 		close()
 
-func _input(event: InputEvent) -> void:
+
+#func _input(event: InputEvent) -> void:
+	#if event.is_echo():
+		#return
+	#if not status:
+		#return
+	#if event.is_action_pressed("l_click", false):
+		#get_viewport().set_input_as_handled()
+		#left_click()
+		#return
+
+func _gui_input(event: InputEvent) -> void:
 	if not status:
 		return
-	
+		
 	if event.is_action_pressed("l_click", false):
-		left_click()
 		get_viewport().set_input_as_handled()
+		left_click()
 		return

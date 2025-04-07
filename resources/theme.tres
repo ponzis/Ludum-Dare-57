@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://buexl6pfmxfhb"]
+
+[ext_resource type="FontFile" uid="uid://bm6hr0b24j0ty" path="res://resources/garbage.ttf" id="1_d4nwg"]
+
+[resource]
+default_font = ExtResource("1_d4nwg")
+default_font_size = 100

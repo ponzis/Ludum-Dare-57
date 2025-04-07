@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b8jg5gbx1sx66"]
+[gd_scene load_steps=25 format=3 uid="uid://b8jg5gbx1sx66"]
 
 [ext_resource type="Texture2D" uid="uid://ulughio1y4fa" path="res://resources/backgrounds/room_1_color.png" id="1_fbq1s"]
 [ext_resource type="Script" uid="uid://b285ibcveqs60" path="res://scripts/room.gd" id="1_wodat"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://rkswgq7nho55" path="res://assets/items/light.tscn" id="4_wodat"]
 [ext_resource type="Texture2D" uid="uid://c5ryh5u3qe8xr" path="res://resources/icons/Exit.svg" id="8_y5lrh"]
 [ext_resource type="PackedScene" uid="uid://ctbdvn54uvslj" path="res://scenes/rooms/room_test.tscn" id="9_38fm3"]
-[ext_resource type="AudioStream" path="res://scenes/rooms/door_random.tres" id="9_whcv4"]
+[ext_resource type="AudioStream" path="res://assets/audio/door_random.tres" id="9_whcv4"]
 [ext_resource type="Script" uid="uid://bcjb3atxhqiem" path="res://scripts/inlay.gd" id="10_wrk0s"]
 [ext_resource type="Script" uid="uid://uo8uq05eptvc" path="res://scripts/door.gd" id="10_wtcj1"]
 [ext_resource type="Shader" uid="uid://bi2lf76mac21x" path="res://resources/shaders/outline.gdshader" id="11_38fm3"]
 [ext_resource type="PackedScene" uid="uid://bgodcg4jc3g4a" path="res://assets/items/bicycle_overlay.tscn" id="11_rgk8g"]
 [ext_resource type="Texture2D" uid="uid://cuv4vhaoig5rj" path="res://assets/items/flash.png" id="11_wrk0s"]
+[ext_resource type="PackedScene" uid="uid://pxkqybeco0k7" path="res://assets/items/door_code.tscn" id="12_65yxn"]
 
 [sub_resource type="Gradient" id="Gradient_aq8op"]
 offsets = PackedFloat32Array(0.914787, 0.958647)
@@ -36,7 +37,7 @@ shader = ExtResource("11_38fm3")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_38fm3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65yxn"]
 shader = ExtResource("11_38fm3")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 1.0
@@ -51,6 +52,11 @@ gradient = SubResource("Gradient_p8nu4")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38fm3"]
+shader = ExtResource("11_38fm3")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wrk0s"]
 shader = ExtResource("11_38fm3")
@@ -77,9 +83,17 @@ description = "Click to go to next room"
 audio = ExtResource("9_whcv4")
 border_distance = 50.0
 
+[node name="Keypad" parent="." instance=ExtResource("2_fbq1s")]
+material = SubResource("ShaderMaterial_65yxn")
+position = Vector2(220.609, 516.391)
+scale = Vector2(1.63721, 1.63721)
+texture = SubResource("GradientTexture2D_v1x83")
+script = ExtResource("10_wrk0s")
+inlay = ExtResource("12_65yxn")
+
 [node name="Bicycle" parent="." instance=ExtResource("2_fbq1s")]
 material = SubResource("ShaderMaterial_38fm3")
-position = Vector2(175, 471)
+position = Vector2(262, 256)
 scale = Vector2(1.65625, 1.65625)
 texture = SubResource("GradientTexture2D_v1x83")
 script = ExtResource("10_wrk0s")

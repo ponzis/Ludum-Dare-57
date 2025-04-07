@@ -15,7 +15,7 @@ uniform sampler2D falloff: hint_default_black;
 void fragment() {
 	vec4 color = texture(screen_texture, SCREEN_UV);
 	//float noise_texture = dot(texture(noise, SCREEN_UV).rgb, vec3(noise_factor)) / 3.0;
-	
+
 	vec4 mask = texture(TEXTURE, UV);
 	vec4 falloff_mask = texture(falloff, UV);
 

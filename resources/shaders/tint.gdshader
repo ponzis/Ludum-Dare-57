@@ -41,6 +41,7 @@ mat4 saturation_matrix(float s) {
 }
 
 void fragment() {
+
 	vec4 color = texture(screen_texture, SCREEN_UV);
 	
 	mat4 matrix =

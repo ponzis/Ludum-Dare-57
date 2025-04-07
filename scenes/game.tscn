@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://brl576wtgm0yc"]
+[gd_scene load_steps=13 format=3 uid="uid://brl576wtgm0yc"]
 
 [ext_resource type="Script" uid="uid://chft3x8xi84ur" path="res://scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="3_0tnpc"]
 [ext_resource type="Shader" uid="uid://h2ai63ynllq0" path="res://resources/shaders/tint.gdshader" id="4_vtaks"]
 [ext_resource type="Texture2D" uid="uid://f8wgyu8qv00q" path="res://resources/black.png" id="5_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://q8roycg6pi2f" path="res://resources/mask.tscn" id="6_dinhu"]
+[ext_resource type="Shader" uid="uid://btl8654fgey5l" path="res://resources/shaders/pixle.gdshader" id="6_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="7_kvuet"]
 [ext_resource type="AudioStream" uid="uid://bkopuohvhclaa" path="res://assets/audio/ambience1.wav" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://det3x4jhb7sgo" path="res://scripts/random_trigger.gd" id="8_gee14"]
@@ -16,6 +17,10 @@ shader_parameter/brightness = 0.0
 shader_parameter/contrast = 1.0
 shader_parameter/saturation = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+shader = ExtResource("6_vtaks")
+shader_parameter/pixle_size = 119.0
+
 [node name="Root" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -23,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_u5sy4")
 
 [node name="Room" type="Node2D" parent="."]
@@ -41,13 +47,13 @@ uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 metadata/_edit_lock_ = true
 
 [node name="Overlay" type="Control" parent="."]
-process_priority = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_lock_ = true
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
@@ -63,6 +69,16 @@ uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
 
 [node name="mask" parent="BackBufferCopy" instance=ExtResource("6_dinhu")]
 position = Vector2(530, 325)
+
+[node name="filter" type="Polygon2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_kvpfn")
+color = Color(0, 0, 0, 1)
+texture = ExtResource("5_kvpfn")
+texture_scale = Vector2(0.05, 0.05)
+polygon = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+uv = PackedVector2Array(0, 0, 0, 648, 1152, 648, 1152, 0)
+metadata/_edit_lock_ = true
 
 [node name="UI" parent="." instance=ExtResource("7_kvuet")]
 layout_mode = 1

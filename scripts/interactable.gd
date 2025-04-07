@@ -53,7 +53,7 @@ func is_close(mouse_position: Vector2) -> bool:
 	return false
 
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event):
 	show_border = false
 	if not visible:
 		return
@@ -62,6 +62,7 @@ func _input(event: InputEvent) -> void:
 	if is_close(mouse_position) || is_pixel_opaque(mouse_position):
 		if event.is_action_pressed("l_click") && event.is_pressed() and not event.is_echo():
 			click()
+			get_viewport().set_input_as_handled()
 			return
 		show_border = true
 		return

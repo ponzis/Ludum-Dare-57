@@ -28,3 +28,5 @@ grow_vertical = 2
 texture = ExtResource("1_6e2k1")
 expand_mode = 1
 stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

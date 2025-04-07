@@ -29,3 +29,8 @@ func reset_scene():
 
 func _process(_delta: float) -> void:
 	pass
+
+
+func _unhandled_input(event):
+	if event.is_action_pressed("escape"):
+		end_game()

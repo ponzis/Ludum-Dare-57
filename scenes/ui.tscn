@@ -15,16 +15,13 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_x4jx1")
 
-[node name="Bottom" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_right = 283.0
+offset_bottom = 108.0
+text = "Reset"
 
-[node name="Background" type="TextureRect" parent="Bottom"]
+[node name="Bottom" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -50,11 +47,5 @@ grow_horizontal = 0
 grow_vertical = 0
 expand_mode = 2
 stretch_mode = 5
-
-[node name="Reset" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Reset"
 
 [connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]

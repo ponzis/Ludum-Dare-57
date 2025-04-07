@@ -15,3 +15,7 @@ func _on_item_change(item: Item):
 
 func _on_reset_pressed() -> void:
 	Global.reset_scene()
+
+
+func _gui_input(event):
+	pass

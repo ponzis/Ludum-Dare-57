@@ -53,6 +53,9 @@ func _load_room(scene: PackedScene) -> Room:
 	current_room = new_room
 	return new_room
 
+func _reset_room():
+	get_tree().reload_current_scene()
+	
 func change_overlay(overlay_id: String):
 	print('Overlay Change')
 	changed_overlay.emit(overlay_id)
@@ -80,5 +83,5 @@ func _ready() -> void:
 	print('Room Ready')
 
 
-func _reset_room():
-	get_tree().reload_current_scene()
+func _gui_input(event):
+	pass
