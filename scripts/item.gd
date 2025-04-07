@@ -3,14 +3,18 @@ extends Interactable
 
 @export_group("Properties")
 @export var holdable: bool = false
-@export var delete_on_click: bool = true
+@export var hide_on_click: bool = true
+
 
 func click():
 	print('Click Item')
 	super.click()
-	GameState.item = self
-	if delete_on_click:
-		_remove()
+	
+	if holdable:
+		GameState.item = self
+		
+	if hide_on_click:
+		visible = false
 
 
 func _remove():

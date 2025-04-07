@@ -8,6 +8,8 @@ extends Control
 @onready var overlay: Control = $Overlay
 @onready var mask: Mask = $BackBufferCopy/mask
 
+@onready var audio: AudioStreamPlayer = $Audio
+
 signal changed_room
 
 signal created_overlay(name: String)
@@ -65,6 +67,7 @@ func _load_overlay(scene: PackedScene) -> Overlay:
 	
 	overlay.add_child(new_overlay)
 	return new_overlay
+
 
 func _ready() -> void:
 	Global.restet.connect(_reset_room)
