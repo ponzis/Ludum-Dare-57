@@ -11,15 +11,19 @@ signal code_pass;
 
 var entered_code: String
 
+
 func _on__pressed(value: int) -> void:
-	if entered_code.length() > max_enter:
-		print('code failed')
-		code_failed.emit()
-		return
-	
 	entered_code += str(value)
 	label.text = entered_code
 	
+	if entered_code.length() > max_enter:
+		print('code failed')
+		entered_code = ''
+		label.text = ''
+		code_failed.emit()
+		return
+	
+
 	if entered_code == code:
 		print("Passed code")
 		code_pass.emit()

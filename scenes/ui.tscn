@@ -17,8 +17,8 @@ script = ExtResource("1_x4jx1")
 
 [node name="Reset" type="Button" parent="."]
 layout_mode = 0
-offset_right = 283.0
-offset_bottom = 108.0
+offset_right = 52.0
+offset_bottom = 24.0
 text = "Reset"
 
 [node name="Bottom" type="TextureRect" parent="."]
