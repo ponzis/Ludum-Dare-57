@@ -49,18 +49,18 @@ func change_overlay(overlay_id: String):
 	print('Overlay Change')
 	changed_overlay.emit(overlay_id)
 
-func create_overlay(sceen: PackedScene) -> Control:
+func create_overlay(sceen: PackedScene) -> Overlay:
 	print('Overlay Create')
 	var node = _load_overlay(sceen)
 	created_overlay.emit(node.name)
 	return node
 
-func _load_overlay(scene: PackedScene) -> Control:
+func _load_overlay(scene: PackedScene) -> Overlay:
 	assert(scene != null)
 	
 	var node = scene.instantiate()
 	
-	var new_overlay = node as Control
+	var new_overlay = node as Overlay
 	assert(new_overlay != null)
 	
 	overlay.add_child(new_overlay)

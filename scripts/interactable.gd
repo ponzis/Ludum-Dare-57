@@ -43,6 +43,7 @@ func is_close(mouse_position: Vector2) -> bool:
 		return true
 	return false
 
+
 func _input(event: InputEvent) -> void:
 	show_border = false
 	if not visible:

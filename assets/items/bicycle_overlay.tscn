@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgodcg4jc3g4a"]
+[gd_scene load_steps=3 format=3 uid="uid://bgodcg4jc3g4a"]
 
 [ext_resource type="Texture2D" uid="uid://bh4oij6ch4phs" path="res://resources/backgrounds/DSC_3767.jpg" id="1_6e2k1"]
+[ext_resource type="Script" uid="uid://c0kuywma1xjlr" path="res://scripts/overlay.gd" id="1_6v5hc"]
 
 [node name="BicycleOverlay" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6v5hc")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
