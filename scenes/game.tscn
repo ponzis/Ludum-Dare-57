@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brl576wtgm0yc"]
+[gd_scene load_steps=11 format=3 uid="uid://brl576wtgm0yc"]
 
 [ext_resource type="Script" uid="uid://chft3x8xi84ur" path="res://scripts/game.gd" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://b8jg5gbx1sx66" path="res://scenes/rooms/room_1.tscn" id="3_0tnpc"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxdrpjsidrv1m" path="res://scenes/ui.tscn" id="7_kvuet"]
 [ext_resource type="AudioStream" uid="uid://bkopuohvhclaa" path="res://assets/audio/ambience1.wav" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://det3x4jhb7sgo" path="res://scripts/random_trigger.gd" id="8_gee14"]
+[ext_resource type="AudioStream" uid="uid://cgu2g55bsy68" path="res://assets/audio/random_drip.tres" id="9_0tnpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nelfd"]
 shader = ExtResource("4_vtaks")
@@ -73,11 +74,11 @@ autoplay = true
 
 [node name="RandomTrigger" type="Node" parent="."]
 script = ExtResource("8_gee14")
+min_time = 5
+max_time = 20
 metadata/_custom_type_script = "uid://det3x4jhb7sgo"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RandomTrigger"]
-
-[node name="StatusIndicator" type="StatusIndicator" parent="RandomTrigger"]
-tooltip = "Test"
+stream = ExtResource("9_0tnpc")
 
 [connection signal="triggered" from="RandomTrigger" to="RandomTrigger/AudioStreamPlayer" method="play" binds= [0]]

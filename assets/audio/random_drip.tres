@@ -1,0 +1,9 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://cgu2g55bsy68"]
+
+[ext_resource type="AudioStream" uid="uid://br07qtsjrgohs" path="res://assets/audio/water1.wav" id="1_dqgms"]
+[ext_resource type="AudioStream" uid="uid://ccny52ym8vc2u" path="res://assets/audio/water2.wav" id="2_rxpic"]
+
+[resource]
+streams_count = 2
+stream_0/stream = ExtResource("1_dqgms")
+stream_1/stream = ExtResource("2_rxpic")
